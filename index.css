@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 2% 6%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 2% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 2% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 228 100% 23%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 228 30% 12%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 63%;
+
+    --accent: 228 100% 13%;
+    --accent-foreground: 228 100% 50%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 228 100% 23% / 0.2;
+    --input: 228 100% 23% / 0.2;
+    --ring: 228 100% 23%;
+
+    --radius: 0rem;
+
+    --sidebar-background: 0 2% 6%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 228 100% 23%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 30% 12%;
+    --sidebar-accent-foreground: 0 0% 85%;
+    --sidebar-border: 228 100% 23% / 0.2;
+    --sidebar-ring: 228 100% 23%;
+
+    --font-heading: 'Baumans', cursive;
+    --font-body: 'Baumans', sans-serif;
+    --font-mono: 'Baumans', monospace;
+
+    --glow-primary: 228 100% 23%;
+    --glow-bright: 228 100% 50%;
+    --atmosphere: 228 100% 23%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Lightning flash keyframes */
+@keyframes lightning-flash {
+  0%, 100% { opacity: 0; }
+  4% { opacity: 0.4; }
+  6% { opacity: 0; }
+  8% { opacity: 0.3; }
+  10% { opacity: 0; }
+}
+
+@keyframes lightning-flash-2 {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0; }
+  54% { opacity: 0.35; }
+  56% { opacity: 0; }
+  58% { opacity: 0.2; }
+  60% { opacity: 0; }
+}
+
+@keyframes lightning-flash-3 {
+  0%, 100% { opacity: 0; }
+  30% { opacity: 0; }
+  33% { opacity: 0.3; }
+  35% { opacity: 0; }
+}
+
+/* Blob rotation */
+@keyframes blob-rotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  33% { transform: translate(-50%, -50%) rotate(120deg) scale(1.1); }
+  66% { transform: translate(-50%, -50%) rotate(240deg) scale(0.95); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+/* Initial flash reveal */
+@keyframes initial-flash {
+  0% { opacity: 0; }
+  10% { opacity: 0.6; }
+  20% { opacity: 0; }
+  30% { opacity: 0.4; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes content-reveal {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Logo scroll */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Lightning pulse glow */
+@keyframes lightning-pulse {
+  0%, 100% { filter: drop-shadow(0 0 4px hsl(228 100% 23%)) drop-shadow(0 0 12px hsl(228 100% 23% / 0.4)); opacity: 0.3; }
+  50% { filter: drop-shadow(0 0 8px hsl(228 100% 40%)) drop-shadow(0 0 24px hsl(228 100% 23% / 0.6)); opacity: 0.6; }
+}
+
+/* Blue glow underline for nav links */
+@keyframes glow-underline {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: hsl(228 100% 50%);
+  box-shadow: 0 0 8px hsl(228 100% 50% / 0.6), 0 0 16px hsl(228 100% 23% / 0.4);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.animate-lightning-1 { animation: lightning-flash 8s ease-in-out infinite; }
+.animate-lightning-2 { animation: lightning-flash-2 12s ease-in-out infinite; }
+.animate-lightning-3 { animation: lightning-flash-3 6s ease-in-out infinite; }
+.animate-blob-rotate { animation: blob-rotate 20s ease-in-out infinite; }
+.animate-initial-flash { animation: initial-flash 0.6s ease-out forwards; }
+.animate-content-reveal { animation: content-reveal 0.1s step-end 0.15s forwards; opacity: 0; }
+.animate-scroll-left { animation: scroll-left 30s linear infinite; }
+.animate-lightning-pulse { animation: lightning-pulse 4s ease-in-out infinite; }
